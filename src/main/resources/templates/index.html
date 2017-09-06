@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Map-app index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{../lib/leaflet1.2.0/leaflet.css}" href="../static/lib/leaflet1.2.0/leaflet.css" />
+    <script th:src="@{../lib/leaflet1.2.0/leaflet.js}" src="../static/lib/leaflet1.2.0/leaflet.js"></script>
+</head>
+
+<body>
+    Hello Map!
+    <div id="mapid" style="width:600px; height=400px;"></div>
+
+    <script type="text/javascript">
+        var map;
+        var ajaxRequest;
+        var plotlist;
+        var plotlayers = [];
+
+        function initmap() {
+            // set up the map
+            map = new L.Map('mapid');
+
+            // create the tile layer with correct attribution
+            var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+            var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+            var osm = new L.TileLayer(osmUrl, {
+                minZoom: 8,
+                maxZoom: 12,
+                attribution: osmAttrib
+            });
+
+            // start the map in South-East England
+            map.setView(new L.LatLng(51.3, 0.7), 9);
+            map.addLayer(osm);
+        }
+
+        initmap();
+    </script>
+
+
+</body>
+
+
+</html>
